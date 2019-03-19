@@ -33,7 +33,10 @@ class Books extends Component {
   render() {
     return (
       <div>
-        <Jumbotron />
+        <Jumbotron>
+              <h1>Google Books React Search</h1>
+              <p>Search for and save books of interest</p>
+            </Jumbotron>
         <Container>
           <Row>
             <Col size="md-12">

@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import {BookListItems, BookList} from "../components/BookList";
-import Nav from "../components/Nav";
+import { Input } from "../components/Form";
+import { BookListItems, BookList } from "../components/BookList";
 import Button from "../components/Button";
 
 class Books extends Component {
@@ -16,23 +12,6 @@ class Books extends Component {
     title: "",
   };
 
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: ""})
-  //     )
-  //     .catch(err => console.log(err));
-  // };
-
-  // deleteBook = id => {
-  //   API.deleteBook(id)
-  //     .then(res => this.loadBooks())
-  //     .catch(err => console.log(err));
-  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -40,19 +19,6 @@ class Books extends Component {
       [name]: value
     });
   };
-
-  // handleFormSubmit = event => {
-  //   // event.preventDefault();
-  //   if (this.state.title) {
-  //     API.saveBook({
-  //       title: this.state.title,
-  //       // author: this.state.author,
-  //       // synopsis: this.state.synopsis
-  //     })
-  //       // .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
 
   handleSave = booksData => {
     API.saveBook(booksData);
@@ -68,7 +34,6 @@ class Books extends Component {
   render() {
     return (
       <div>
-        {/* <Nav /> */}
         <Jumbotron />
         <Container>
           <Row>
@@ -103,28 +68,28 @@ class Books extends Component {
               {!this.state.books.length ? (
                 <h1 className="text-center">No Books to Display</h1>
               ) : (
-                <BookList>
-                  {this.state.books.map(book => {
-                    return (
-                      <BookListItems
-                        key={book.id}
-                        title={book.volumeInfo.title}
-                        link={book.volumeInfo.infoLink}
-                        authors={book.volumeInfo.authors}
-                        description={book.volumeInfo.description}
-                        image={book.volumeInfo.imageLinks.thumbnail}
-                        handleSave={ () => this.handleSave({
-                          title: book.volumeInfo.title,
-                          link: book.volumeInfo.infoLink,
-                          authors: book.volumeInfo.authors,
-                          description: book.volumeInfo.description,
-                          image: book.volumeInfo.imageLinks.thumbnail
-                        })}
-                      />
-                    );
-                  })}
-                </BookList>
-              )}
+                  <BookList>
+                    {this.state.books.map(book => {
+                      return (
+                        <BookListItems
+                          key={book.id}
+                          title={book.volumeInfo.title}
+                          link={book.volumeInfo.infoLink}
+                          authors={book.volumeInfo.authors}
+                          description={book.volumeInfo.description}
+                          thumbnail={book.volumeInfo.imageLinks.thumbnail}
+                          handleSave={() => this.handleSave({
+                            title: book.volumeInfo.title,
+                            link: book.volumeInfo.infoLink,
+                            authors: book.volumeInfo.authors,
+                            description: book.volumeInfo.description,
+                            thumbnail: book.volumeInfo.imageLinks.thumbnail
+                          })}
+                        />
+                      );
+                    })}
+                  </BookList>
+                )}
             </Col>
           </Row>
         </Container>

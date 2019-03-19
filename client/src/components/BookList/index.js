@@ -1,7 +1,7 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
 import { Container, Row, Col } from "../Grid";
-import Button from "../Button";
+// import Button from "../Button";
 // Exporting both RecipeList and RecipeListItem from this file
 
 // RecipeList renders a bootstrap list item
@@ -23,7 +23,7 @@ const BookListItems = props => {
             <p>Author(s): {props.authors.join(', ')}</p>
             <p>Summary: {props.description}</p>
             <a rel="noreferrer noopener" target="_blank" href={props.link}>
-              Go to recipe!
+              Go to Google Books!
             </a>
             <button onClick={props.handleSave} type="button">
                 Save</button>

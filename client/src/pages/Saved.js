@@ -2,17 +2,13 @@ import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Saved extends Component {
   state = {
     books: [],
     title: "",
-    author: "",
-    synopsis: ""
   };
 
   componentDidMount() {
@@ -22,7 +18,7 @@ class Saved extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ books: res.data, title: "" })
       )
       .catch(err => console.log(err));
   };
@@ -57,40 +53,6 @@ class Saved extends Component {
     return (
       <Container fluid>
         <Row>
-          {/* <Col size="md-1">
-          </Col>
-          <Col size="md-10">
-            <Jumbotron>
-              <h1>Google SAVED Search</h1>
-              <p>Search for and Save Books of Interest</p>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Book
-              </FormBtn>
-            </form>
-          </Col> */}
           <Col size="md-1">
           </Col>
           <Col size="md-10">
@@ -101,18 +63,20 @@ class Saved extends Component {
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
+                    <strong>
+                      {book.title} by {book.authors}
+                    </strong>
+                    <p>{book.description}</p>
+                    <a rel="noreferrer noopener" target="_blank" href={book.link}>
+                      Go to Google Books!
+            </a>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

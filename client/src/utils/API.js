@@ -17,7 +17,7 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   },
-
+  // Gets book info from googlebooks
   googleBooksPull: function(query) {
     return axios.get("/api/googlebooks", { params: { q: "title:" + query } });
   }

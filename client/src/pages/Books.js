@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import { Input } from "../components/Form";
-import { BookListItems, BookList } from "../components/BookList";
+import { Input} from "../components/Form";
+import {BookListItems, BookList} from "../components/BookList";
 import Button from "../components/Button";
 
 class Books extends Component {
@@ -11,7 +11,6 @@ class Books extends Component {
     books: [],
     title: "",
   };
-
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -68,28 +67,28 @@ class Books extends Component {
               {!this.state.books.length ? (
                 <h1 className="text-center">No Books to Display</h1>
               ) : (
-                  <BookList>
-                    {this.state.books.map(book => {
-                      return (
-                        <BookListItems
-                          key={book.id}
-                          title={book.volumeInfo.title}
-                          link={book.volumeInfo.infoLink}
-                          authors={book.volumeInfo.authors}
-                          description={book.volumeInfo.description}
-                          thumbnail={book.volumeInfo.imageLinks.thumbnail}
-                          handleSave={() => this.handleSave({
-                            title: book.volumeInfo.title,
-                            link: book.volumeInfo.infoLink,
-                            authors: book.volumeInfo.authors,
-                            description: book.volumeInfo.description,
-                            thumbnail: book.volumeInfo.imageLinks.thumbnail
-                          })}
-                        />
-                      );
-                    })}
-                  </BookList>
-                )}
+                <BookList>
+                  {this.state.books.map(book => {
+                    return (
+                      <BookListItems
+                        key={book.id}
+                        title={book.volumeInfo.title}
+                        link={book.volumeInfo.infoLink}
+                        authors={book.volumeInfo.authors}
+                        description={book.volumeInfo.description}
+                        thumbnail={book.volumeInfo.imageLinks.thumbnail}
+                        handleSave={ () => this.handleSave({
+                          title: book.volumeInfo.title,
+                          link: book.volumeInfo.infoLink,
+                          authors: book.volumeInfo.authors,
+                          description: book.volumeInfo.description,
+                          thumbnail: book.volumeInfo.imageLinks.thumbnail
+                        })}
+                      />
+                    );
+                  })}
+                </BookList>
+              )}
             </Col>
           </Row>
         </Container>

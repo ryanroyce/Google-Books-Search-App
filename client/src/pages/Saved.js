@@ -68,8 +68,7 @@ class Saved extends Component {
                     </strong>
                     <p>{book.description}</p>
                     <a rel="noreferrer noopener" target="_blank" href={book.link}>
-                      Go to Google Books!
-            </a>
+                      Go to Google Books!</a>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
